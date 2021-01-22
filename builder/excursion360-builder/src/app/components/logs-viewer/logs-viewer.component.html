@@ -1,0 +1,7 @@
+<label *ngFor="let logLevel of enabledLevels" class="logLevelItem">
+    {{logLevel.level}}
+    <input [(ngModel)]="logLevel.enabled" type="checkbox"/>
+</label>
+<div #logMessages (scroll)="scrolled($event)" class="logMessages">
+    <p *ngFor="let log of logsToView" #logMessage>{{log.date | date:'short'}}|{{log.sender}}|{{log.level}}: {{log.message}}</p>
+</div>

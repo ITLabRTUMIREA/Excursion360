@@ -1,0 +1,15 @@
+trigger:
+  branches:
+    include:
+      - "*"
+variables:
+  builderDir: "builder/excursion360-builder-react"
+pool:
+  vmImage: "ubuntu-latest"
+steps:
+  - script: yarn install
+    workingDirectory: $(builderDir)
+  - script: yarn build
+    workingDirectory: $(builderDir)
+  - publish: $(builderDir)/build
+    artifact: excursion360-builder

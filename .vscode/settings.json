@@ -6,5 +6,8 @@
     ],
     "liveServer.settings.multiRootWorkspaceName": "Excursion360-Web",
     "liveServer.settings.NoBrowser": true,
-    "liveServer.settings.root": "devdata/excursion"
+    "liveServer.settings.root": "devdata/excursion",
+    "files.associations": {
+        "azure-pipelines*": "azure-pipelines"
+    }
 }

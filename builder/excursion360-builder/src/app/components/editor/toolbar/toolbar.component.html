@@ -1,0 +1,8 @@
+<label>
+    Show scene titles
+    <input type="checkbox" [(ngModel)]="showLabels">
+</label>
+<label *ngIf="showLabels">
+    Scene titles size
+    <input type="number" [(ngModel)]="labelsSize">
+</label>

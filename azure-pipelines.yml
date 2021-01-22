@@ -7,43 +7,43 @@ trigger:
       - v*
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '12.x'
-  displayName: 'Install Node.js'
-- task: Npm@1
-  displayName: npm ci
-  inputs:
-    command: 'ci'
-- task: Npm@1
-  displayName: npm run build
-  inputs:
-    command: 'custom'
-    customCommand: 'run build'
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: 'build'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/build.zip'
-    replaceExistingArchive: true
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'build'
-    publishLocation: 'Container'
-- task: GitHubRelease@1
-  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
-  inputs:
-    gitHubConnection: 'CAPCHIK'
-    repositoryName: '$(Build.Repository.Name)'
-    action: 'create'
-    target: '$(Build.SourceVersion)'
-    tagSource: 'gitTag'
-    releaseNotesFilePath: 'ReleaseNotes.md'
-    isDraft: false
-    changeLogCompareToRelease: 'lastFullRelease'
-    changeLogType: 'commitBased'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "12.x"
+    displayName: "Install Node.js"
+  - task: Npm@1
+    displayName: npm ci
+    inputs:
+      command: "ci"
+  - task: Npm@1
+    displayName: npm run build
+    inputs:
+      command: "custom"
+      customCommand: "run build"
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: "build"
+      includeRootFolder: false
+      archiveType: "zip"
+      archiveFile: "$(Build.ArtifactStagingDirectory)/build.zip"
+      replaceExistingArchive: true
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "build"
+      publishLocation: "Container"
+  - task: GitHubRelease@1
+    condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
+    inputs:
+      gitHubConnection: "CAPCHIK"
+      repositoryName: "$(Build.Repository.Name)"
+      action: "create"
+      target: "$(Build.SourceVersion)"
+      tagSource: "gitTag"
+      releaseNotesFilePath: "ReleaseNotes.md"
+      isDraft: false
+      changeLogCompareToRelease: "lastFullRelease"
+      changeLogType: "commitBased"

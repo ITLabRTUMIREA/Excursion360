@@ -1,0 +1,11 @@
+<p>{{position$ | async}}</p>
+<div *ngIf="selectedScene == null; then selectSceneBlock else sceneEditorBlock"></div>
+<ng-template #selectSceneBlock>Select one scene</ng-template>
+<ng-template #sceneEditorBlock>
+    <div>
+        <label>
+            Title
+            <input [(ngModel)]="selectedScene.title"/>
+        </label>
+    </div>
+</ng-template>
